@@ -87,7 +87,7 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = Math.s
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int = (number % 1000) / 100
+fun thirdDigit(number: Int): Int = (number / 100) % 100
 
 /**
  * Простая
@@ -96,7 +96,12 @@ fun thirdDigit(number: Int): Int = (number % 1000) / 100
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = (hoursArrive * 60 + minutesArrive) - (hoursDepart * 60 + minutesDepart)
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = {
+    val x1 = 60 - minutesDepart + minutesArrive
+    val hours = hoursArrive - hoursDepart - 1
+    val minutes = x1 + 60 * hours
+    return minutes
+}
 
 /**
  * Простая
@@ -105,7 +110,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
-fun accountInThreeYears(initial: Int, percent: Int): Int = initial * (1 + percent / 100)* (1 + percent / 100)* (1 + percent / 100)
+fun accountInThreeYears(initial: Int, percent: Int): Double = initial * pow(percent * 0.01 + 1, 3.0)
 
 /**
  * Простая
@@ -113,4 +118,4 @@ fun accountInThreeYears(initial: Int, percent: Int): Int = initial * (1 + percen
  * Пользователь задает целое трехзначное число (например, 478).
  *Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
-fun numberRevert(number: Int): Int = number % 10 * 100 + (number % 100) / 10 * 10 + number / 100
+fun numberRevert(number: Int): Int = (number % 10) * 100 + (number % 100) / 10 * 10 + number / 100
