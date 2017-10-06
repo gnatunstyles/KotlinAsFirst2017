@@ -69,7 +69,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = sagenes 
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + min / 60 + sec / 3600) * 3.14 / 180
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + min / 60.0 + sec / 3600.0) * PI / 180.0
 
 /**
  * Тривиальная
@@ -86,7 +86,7 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = Math.s
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int = (number / 100) % 100
+fun thirdDigit(number: Int): Int = (number / 100) % 10
 
 /**
  * Простая

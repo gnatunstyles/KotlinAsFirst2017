@@ -70,8 +70,8 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
-     return if ((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY || rookX2 != kingX))  1
-    else if ((rookX2 == kingX || rookY2 == kingY) && (rookY1 != kingY || rookX1 != kingX))  2
+     return if ((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY && rookX2 != kingX)) 1
+    else if ((rookX2 == kingX || rookY2 == kingY) && (rookY1 != kingY && rookX1 != kingX))  2
      else if ((rookX1 == kingX || rookY1 == kingY) && (rookY2 == kingY || rookX2 == kingX)) 3
     else 0
 }
@@ -123,6 +123,6 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int  {
    return if ((b >= c) && (a <= c) && (d >= b))  b - c
    else if ((d >= a) && (c <= a) && (b >= d)) d - a
     else if ((d >= b) && (a >= c))  b - a
-   else  if ((b <= d) && (c >= a))  d - c
+   else  if ((b >= d) && (c >= a))  d - c
     else  -1
 }
