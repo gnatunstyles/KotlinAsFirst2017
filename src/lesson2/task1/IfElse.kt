@@ -1,5 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
+
 import lesson1.task1.discriminant
 
 /**
@@ -33,10 +35,10 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String {
-     return if (age % 100 in 5..20) "$age лет"
-    else if (age % 10 == 1)  "$age год"
+    return if (age % 100 in 5..20) "$age лет"
+    else if (age % 10 == 1) "$age год"
     else if (age % 10 in 2..4) "$age года"
-    else  "$age лет"
+    else "$age лет"
 }
 
 /**
@@ -52,9 +54,9 @@ fun timeForHalfWay(t1: Double, v1: Double,
     val s = (t1 * v1 + t2 * v2 + t3 * v3) / 2
     val s1 = v1 * t1
     val s2 = v2 * t2
-    return if (s < s1)  s / v1
-    else if (s in s1..(s1 + s2))  t1 + ((s - s1) / v2)
-    else  t1 + t2 + ((s - s1 - s2) / v3)
+    return if (s < s1) s / v1
+    else if (s in s1..(s1 + s2)) t1 + ((s - s1) / v2)
+    else t1 + t2 + ((s - s1 - s2) / v3)
 
 }
 
@@ -69,12 +71,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int {
-     return if ((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY && rookX2 != kingX)) 1
-    else if ((rookX2 == kingX || rookY2 == kingY) && (rookY1 != kingY && rookX1 != kingX))  2
-     else if ((rookX1 == kingX || rookY1 == kingY) && (rookY2 == kingY || rookX2 == kingX)) 3
-    else 0
-}
+                       rookX2: Int, rookY2: Int): Int =
+        when {((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY && rookX2 != kingX)) -> 1
+            ((rookX2 == kingX || rookY2 == kingY) && (rookY1 != kingY && rookX1 != kingX)) -> 2
+            ((rookX1 == kingX || rookY1 == kingY) && (rookY2 == kingY || rookX2 == kingX)) -> 3
+            else -> 0
+        }
 
 /**
  * Простая
@@ -88,13 +90,13 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int {
-    return if ((rookX != kingX && rookY != kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) 2
-    else if ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) != Math.abs(kingY - bishopY))) 1
-    else if ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) 3
-    else 0
+                          bishopX: Int, bishopY: Int): Int =
+        when { ((rookX != kingX && rookY != kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) -> 2
+            ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) != Math.abs(kingY - bishopY))) -> 1
+            ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) -> 3
+            else -> 0
 
-}
+        }
 
 /**
  * Простая
@@ -104,11 +106,11 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int  {
-    return if ((c * c == a * a + b * b) || (b * b == a * a + c * c) || (a * a == c * c + b * b)) 1
-    else if ((c > a + b) || (b > a + c) || (a > c + b)) -1
-    else if ((c * c > a * a + b * b) || (b * b > a * a + c * c) || (a * a > c * c + b * b)) 2
-    else 0
+fun triangleKind(a: Double, b: Double, c: Double): Int = when {
+    ((c * c == a * a + b * b) || (b * b == a * a + c * c) || (a * a == c * c + b * b)) -> 1
+    ((c > a + b) || (b > a + c) || (a > c + b)) -> -1
+    ((c * c > a * a + b * b) || (b * b > a * a + c * c) || (a * a > c * c + b * b)) -> 2
+    else -> 0
 }
 
 /**
@@ -119,10 +121,10 @@ fun triangleKind(a: Double, b: Double, c: Double): Int  {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int  {
-   return if ((b >= c) && (a <= c) && (d >= b))  b - c
-   else if ((d >= a) && (c <= a) && (b >= d)) d - a
-    else if ((d >= b) && (a >= c))  b - a
-   else  if ((b >= d) && (c >= a))  d - c
-    else  -1
-}
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int =
+        when {((b >= c) && (a <= c) && (d >= b)) -> b - c
+            ((d >= a) && (c <= a) && (b >= d)) -> d - a
+            ((d >= b) && (a >= c)) -> b - a
+            ((b >= d) && (c >= a)) -> d - c
+            else -> -1
+        }
