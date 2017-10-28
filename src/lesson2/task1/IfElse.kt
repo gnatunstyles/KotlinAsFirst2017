@@ -72,7 +72,8 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int =
-        when {((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY && rookX2 != kingX)) -> 1
+        when {
+            ((rookX1 == kingX || rookY1 == kingY) && (rookY2 != kingY && rookX2 != kingX)) -> 1
             ((rookX2 == kingX || rookY2 == kingY) && (rookY1 != kingY && rookX1 != kingX)) -> 2
             ((rookX1 == kingX || rookY1 == kingY) && (rookY2 == kingY || rookX2 == kingX)) -> 3
             else -> 0
@@ -91,7 +92,8 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int): Int =
-        when { ((rookX != kingX && rookY != kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) -> 2
+        when {
+            ((rookX != kingX && rookY != kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) -> 2
             ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) != Math.abs(kingY - bishopY))) -> 1
             ((rookX == kingX || rookY == kingY) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY))) -> 3
             else -> 0
@@ -106,7 +108,8 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = when {
+fun triangleKind(a: Double, b: Double, c: Double): Int =
+        when {
     ((c * c == a * a + b * b) || (b * b == a * a + c * c) || (a * a == c * c + b * b)) -> 1
     ((c > a + b) || (b > a + c) || (a > c + b)) -> -1
     ((c * c > a * a + b * b) || (b * b > a * a + c * c) || (a * a > c * c + b * b)) -> 2
@@ -122,7 +125,8 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = when {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int =
-        when {((b >= c) && (a <= c) && (d >= b)) -> b - c
+        when {
+            ((b >= c) && (a <= c) && (d >= b)) -> b - c
             ((d >= a) && (c <= a) && (b >= d)) -> d - a
             ((d >= b) && (a >= c)) -> b - a
             ((b >= d) && (c >= a)) -> d - c
