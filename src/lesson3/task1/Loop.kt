@@ -2,8 +2,6 @@
 
 package lesson3.task1
 
-import lesson1.task1.sqr
-
 /**
  * Пример
  *
@@ -12,7 +10,7 @@ import lesson1.task1.sqr
 fun factorial(n: Int): Double {
     var result = 1.0
     for (i in 1..n) {
-        result = result * i // Please do not fix in master
+        result *= i // Please do not fix in master
     }
     return result
 }
@@ -146,19 +144,6 @@ fun maxDivisor(n: Int): Int {
     return n
 }
 
-/**
- * Наибольший общий делитель
- */
-fun nod(a: Int, b: Int): Int {
-    while (a != b) {
-        if (a > b) {
-            (a == a - b)
-        } else {
-            (b == b - a)
-        }
-    }
-    return a
-}
 
 /**
  * Простая
@@ -167,7 +152,20 @@ fun nod(a: Int, b: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = nod(m, n) == 1
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var t = m
+    var s = n
+    while (t != s) {
+        if (t > s) {
+            t -= s
+        }
+        if (s > t) {
+            s -= t
+        }
+    }
+    return s == 1
+}
+
 /**
  * Квадрат на промежуткке
  */
@@ -214,23 +212,13 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Не использовать строки при решении задачи.
  */
 fun revert(n: Int): Int {
-    var t = 0
-    var nn = 0
-    var count = 1
-    var n1 = n
-    while (n > 0) {
-        n1 = (n1 / 10)
-        count++
+    var i = 0
+    var number = n
+    while (number > 0) {
+        i = (i * 10) + (number % 10)
+        number /= 10
     }
-    while (count != 0) {
-
-        nn = n / Math.pow(10.0, (count * 1.0 - 1)).toInt() % 10 * Math.pow(10.0, t * 1.0).toInt() + nn
-        t++
-        count--
-    }
-    return nn
-
-
+    return i
 }
 
 
@@ -241,7 +229,15 @@ fun revert(n: Int): Int {
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    var i = 0
+    var number = n
+    while (number > 0) {
+        i = (i * 10) + (number % 10)
+        number /= 10
+    }
+    return i == n
+}
 
 /**
  * Средняя
@@ -249,7 +245,16 @@ fun isPalindrome(n: Int): Boolean = TODO()
  * Для заданного числа n определить, содержит ли оно различающиеся цифры.
  * Например, 54 и 323 состоят из разных цифр, а 111 и 0 из одинаковых.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    var number = n
+    val digit = n % 10
+    while (number > 0) {
+        if (number % 10 != digit) return true
+        number /= 10
+    }
+    return false
+}
+
 
 /**
  * Сложная
@@ -258,7 +263,27 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var x = 1
+    var m = 1
+    var t: Int
+    var l = n
+    var count = 1
+    while (l > 0) {
+        m = x * x
+        t = m
+        while (t >= 10) {
+            count++
+            t /= 10
+        }
+        l -= count
+        count = 1
+        x++
+    }
+    l = Math.abs(l)
+    m = m / Math.pow(10.0, l * 1.0).toInt() % 10
+    return m
+}
 
 /**
  * Сложная
