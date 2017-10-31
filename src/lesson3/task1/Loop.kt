@@ -2,6 +2,9 @@
 
 package lesson3.task1
 
+import java.lang.Math
+import lesson1.task1.sqr
+
 /**
  * Пример
  *
@@ -179,11 +182,14 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     for (i in m..n) {
-        if (i == 0) return false
+        if ((m == 0 && n == 1) || (m == 0 && n == 0)) return false
         if (i.toDouble() % Math.sqrt(i.toDouble()) == 0.0) return true
     }
     return false
 }
+
+
+
 
 /**
  * Средняя
