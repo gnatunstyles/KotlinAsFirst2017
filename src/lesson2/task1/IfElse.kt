@@ -110,11 +110,11 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int =
         when {
-    ((c * c == a * a + b * b) || (b * b == a * a + c * c) || (a * a == c * c + b * b)) -> 1
-    ((c > a + b) || (b > a + c) || (a > c + b)) -> -1
-    ((c * c > a * a + b * b) || (b * b > a * a + c * c) || (a * a > c * c + b * b)) -> 2
-    else -> 0
-}
+            ((c > a + b) || (b > a + c) || (a > c + b)) -> -1
+            ((c * c == a * a + b * b) || (b * b == a * a + c * c) || (a * a == c * c + b * b)) -> 1
+            ((c * c > a * a + b * b) || (b * b > a * a + c * c) || (a * a > c * c + b * b)) -> 2
+            else -> 0
+        }
 
 /**
  * Средняя

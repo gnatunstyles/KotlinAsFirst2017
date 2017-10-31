@@ -116,7 +116,7 @@ fun lcm(m: Int, n: Int): Int {
         }
 
     }
-    return m * n / n1
+    return m / n1 * n
 }
 
 /**
@@ -138,7 +138,7 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    for (m in n - 1 downTo 1) {
+    for (m in Math.sqrt(n.toDouble()).toInt() downTo 1) {
         if (n % m == 0) return m
     }
     return n
