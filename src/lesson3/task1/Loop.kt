@@ -189,8 +189,6 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
 }
 
 
-
-
 /**
  * Средняя
  *
