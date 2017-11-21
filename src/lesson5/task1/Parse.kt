@@ -73,10 +73,10 @@ fun dateStrToDigit(str: String): String {
         val d = parts[0].toInt()
         val y = parts[2].toInt()
 
-        val x = listOf("января", "февраля", "марта", "апреля",
+        val list = listOf("января", "февраля", "марта", "апреля",
                 "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
-        if ((d in 1..31) && (parts[1] in x)) {
-            val m = x.indexOf(parts[1]) + 1
+        if ((d in 1..31) && (parts[1] in list)) {
+            val m = list.indexOf(parts[1]) + 1
             return String.format("%02d.%02d.%d", d, m, y)
         } else return ""
     } catch (e: NumberFormatException) {
