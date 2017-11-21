@@ -137,7 +137,6 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    if (list.isEmpty()) return (list)
     val mean = mean(list)
     for (i in 0 until list.size) {
         list[i] -= mean
@@ -233,7 +232,16 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+fun convert(n: Int, base: Int): List<Int> {
+    var list = listOf<Int>()
+    var number = n
+    while (number >= base) {
+        list += number % base
+        number /= base
+    }
+    list += number
+    return list.reversed()
+}
 
 /**
  * Сложная
