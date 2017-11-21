@@ -174,15 +174,15 @@ fun bestHighJump(jumps: String): Int = TODO()
  */
 fun plusMinus(expression: String): Int {
     try {
-        val x = expression.split(" ")
+        val list = expression.split(" ")
         var i = 0
-        var n = x[0].toInt()
-        while (i in 0..x.size - 3) {
-            if (x[i + 1] == "+") {
-                n += x[i + 2].toInt()
+        var n = list[0].toInt()
+        while (i in 0..list.size - 3) {
+            if (list[i + 1] == "+") {
+                n += list[i + 2].toInt()
             }
-            if (x[i + 1] == "-") {
-                n -= x[i + 2].toInt()
+            if (list[i + 1] == "-") {
+                n -= list[i + 2].toInt()
             }
             i++
         }
