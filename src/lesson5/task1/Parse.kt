@@ -123,7 +123,7 @@ fun dateDigitToStr(digital: String): String {
  * При неверном формате вернуть пустую строку
  */
 fun flattenPhoneNumber(phone: String): String {
-
+    if (phone.length == 0) return ""
     var list = mutableListOf<String>()
     if (phone[0] == '+') list.add("+")
     val signs = phone.split(" ", "-", "(", ")", "+", "")
@@ -136,8 +136,8 @@ fun flattenPhoneNumber(phone: String): String {
         }
     }
     return list.joinToString(separator = "")
-
 }
+
 
 /**
  * Средняя
@@ -173,16 +173,16 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
 fun plusMinus(expression: String): Int {
+    val list = expression.split(" ")
+    var i = 0
+    var n = list[0].toInt()
     try {
-        val list = expression.split(" ")
-        var i = 0
-        var n = list[0].toInt()
-        while (i in 0..list.size - 3) {
-            if (list[i + 1] == "+") {
-                n += list[i + 2].toInt()
+        while (i in 0 until list.size - 1) {
+            if (list[i] == "+") {
+                n += list[i + 1].toInt()
             }
-            if (list[i + 1] == "-") {
-                n -= list[i + 2].toInt()
+            if (list[i] == "-") {
+                n -= list[i + 1].toInt()
             }
             i++
         }
@@ -201,7 +201,17 @@ fun plusMinus(expression: String): Int {
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    if (str.isEmpty()) return -1
+    val list = str.split(" ")
+    var index = 0
+    for (i in 0 until list.size - 1) {
+        if (list[i].toLowerCase() == list[i + 1].toLowerCase())
+            return index
+        index += list[i].length + 1
+    }
+    return -1
+}
 
 /**
  * Сложная
@@ -214,7 +224,24 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть положительными
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    if (description.isEmpty()) return ""
+    val divider = description.split(";")
+    var max = ""
+    var maxcost = 0.0
+    for (i in divider) {
+        val product = i.trim().split(" ")
+        try {
+            if (maxcost < product[1].toDouble()) {
+                maxcost = product[1].toDouble()
+                max = product[0]
+            }
+        } catch (e: Exception) {
+            return ""
+        }
+    }
+    return max
+}
 
 /**
  * Сложная
