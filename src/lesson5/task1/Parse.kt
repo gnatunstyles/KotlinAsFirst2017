@@ -232,7 +232,7 @@ fun mostExpensive(description: String): String {
     for (i in divider) {
         val product = i.trim().split(" ")
         try {
-            if (maxcost < product[1].toDouble()) {
+            if (maxcost <= product[1].toDouble()) {
                 maxcost = product[1].toDouble()
                 max = product[0]
             }
