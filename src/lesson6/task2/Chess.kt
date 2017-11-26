@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson6.task2
 
 /**
@@ -21,7 +22,12 @@ data class Square(val column: Int, val row: Int) {
      * В нотации, колонки обозначаются латинскими буквами от a до h, а ряды -- цифрами от 1 до 8.
      * Для клетки не в пределах доски вернуть пустую строку
      */
-    fun notation(): String = TODO()
+    fun notation(): String {
+        val letters = ('a' .. 'h').toList()
+        if (!inside())
+            return ""
+        return letters[column - 1].toString() + row
+    }
 }
 
 /**
@@ -31,7 +37,14 @@ data class Square(val column: Int, val row: Int) {
  * В нотации, колонки обозначаются латинскими буквами от a до h, а ряды -- цифрами от 1 до 8.
  * Если нотация некорректна, бросить IllegalArgumentException
  */
-fun square(notation: String): Square = TODO()
+fun square(notation: String): Square {
+    val letters = ('a'..'h').toList()
+
+    if (!notation.matches(Regex("[a-h][1-8]")))
+        throw IllegalArgumentException()
+
+    return Square(letters.indexOf(notation[0]) + 1, notation[1].toString().toInt())
+}
 
 /**
  * Простая
