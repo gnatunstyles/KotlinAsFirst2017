@@ -141,10 +141,11 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    for (m in n / 2 downTo 1) {
-        if (n % m == 0) return m
-    }
-    return n
+    val x = (Math.sqrt(n.toDouble())).toInt()
+    for (m in 2..x)
+        if (n % (n / m) == 0)
+            return n / m
+    return 1
 }
 
 
