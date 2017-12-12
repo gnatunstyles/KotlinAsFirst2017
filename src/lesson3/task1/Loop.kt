@@ -156,7 +156,10 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean {
+/**
+ * Функция для нахождения НОД
+ */
+fun gcd(m: Int, n: Int): Int {
     var t = m
     var s = n
     while (t != s) {
@@ -167,8 +170,10 @@ fun isCoPrime(m: Int, n: Int): Boolean {
             s -= t
         }
     }
-    return s == 1
+    return s
 }
+
+fun isCoPrime(m: Int, n: Int): Boolean = gcd(m, n) == 1
 
 /**
  * Квадрат на промежуткке
@@ -184,7 +189,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     for (i in m..n) {
         if (i == 0 || i == 1) return true
-        if (i.toDouble() % Math.sqrt(i.toDouble()) == 0.0) return true
+        if (i.toDouble().toInt() % Math.sqrt(i.toDouble()) == 0.0) return true
     }
     return false
 }
@@ -232,10 +237,7 @@ fun revert(n: Int): Int {
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean {
-    val j = revert(n)
-    return n == j
-}
+fun isPalindrome(n: Int): Boolean = n == revert(n)
 
 /**
  * Средняя

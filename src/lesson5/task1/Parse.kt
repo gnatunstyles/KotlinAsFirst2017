@@ -236,7 +236,8 @@ fun mostExpensive(description: String): String {
                 maxcost = product[1].toDouble()
                 max = product[0]
             }
-        } catch (e: Exception) {
+        }
+        catch (e:NumberFormatException){
             return ""
         }
     }

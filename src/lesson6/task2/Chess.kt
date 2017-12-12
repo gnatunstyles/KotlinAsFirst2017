@@ -23,7 +23,7 @@ data class Square(val column: Int, val row: Int) {
      * Для клетки не в пределах доски вернуть пустую строку
      */
     fun notation(): String {
-        val letters = ('a' .. 'h').toList()
+        val letters = ('a'..'h').toList()
         if (!inside())
             return ""
         return letters[column - 1].toString() + row
